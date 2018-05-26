@@ -8,13 +8,15 @@ import java.util.logging.Logger;
  * @author Edunaldo
  */
 public class App extends javax.swing.JFrame {
-    
+
     private Hilo tiempo;
-    
+
     public App() {
         initComponents();
-        tiempo = new Hilo();
-        tiempo.start();
+        btnComenzarPartido.setEnabled(false);
+        btnEquipo1.setEnabled(false);
+        btnEquipo2.setEnabled(false);
+        
     }
 
     /**
@@ -29,12 +31,14 @@ public class App extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnEquipo1 = new javax.swing.JButton();
         btnEquipo2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         lblPorcentajeEquipo1 = new javax.swing.JLabel();
         lblPorcentajeEquipo2 = new javax.swing.JLabel();
         lblTiempoPartido = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnComenzarPartido = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        ckbEquipo1 = new javax.swing.JCheckBox();
+        chkEquipo2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,67 +60,99 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("PORCENTAJE");
+        lblPorcentajeEquipo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPorcentajeEquipo1.setText("0");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("PORCENTAJE");
-
-        lblPorcentajeEquipo1.setText("PORCEN1");
-
-        lblPorcentajeEquipo2.setText("PORCEN2");
+        lblPorcentajeEquipo2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPorcentajeEquipo2.setText("0");
 
         lblTiempoPartido.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblTiempoPartido.setText("TIEMPO PARTIDO");
         lblTiempoPartido.setToolTipText("");
         lblTiempoPartido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setText("COMENZAR PARTIDO");
+        btnComenzarPartido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnComenzarPartido.setText("COMENZAR PARTIDO");
+        btnComenzarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComenzarPartidoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("%");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("%");
+
+        ckbEquipo1.setText("Partida");
+        ckbEquipo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbEquipo1MouseClicked(evt);
+            }
+        });
+
+        chkEquipo2.setText("Partida");
+        chkEquipo2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkEquipo2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(94, 94, 94))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnEquipo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEquipo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(lblTiempoPartido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEquipo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(btnEquipo2)
                 .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnComenzarPartido)
+                .addGap(196, 196, 196))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(102, 102, 102)
+                .addComponent(ckbEquipo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chkEquipo2)
+                .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ckbEquipo1)
+                    .addComponent(chkEquipo2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTiempoPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnComenzarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +182,25 @@ public class App extends javax.swing.JFrame {
     private void btnEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipo2ActionPerformed
         tiempo.cambiarEquipo2();
     }//GEN-LAST:event_btnEquipo2ActionPerformed
+
+    private void btnComenzarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidoActionPerformed
+        tiempo = new Hilo();
+        tiempo.start();
+        chkEquipo2.setEnabled(false);
+        ckbEquipo1.setEnabled(false);
+        btnEquipo1.setEnabled(true);
+        btnEquipo2.setEnabled(true);
+    }//GEN-LAST:event_btnComenzarPartidoActionPerformed
+
+    private void ckbEquipo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbEquipo1MouseClicked
+        chkEquipo2.setSelected(false);
+        btnComenzarPartido.setEnabled(true);
+    }//GEN-LAST:event_ckbEquipo1MouseClicked
+
+    private void chkEquipo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkEquipo2MouseClicked
+        ckbEquipo1.setSelected(false);
+        btnComenzarPartido.setEnabled(true);
+    }//GEN-LAST:event_chkEquipo2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,9 +238,11 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComenzarPartido;
     private javax.swing.JButton btnEquipo1;
     private javax.swing.JButton btnEquipo2;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox chkEquipo2;
+    private javax.swing.JCheckBox ckbEquipo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -200,16 +257,22 @@ public class App extends javax.swing.JFrame {
         private int segEquipo2 = 0;
         private boolean equiposeleccionado1;
         private boolean equiposeleccionado2;
-        
-        public Hilo(){
+
+        public Hilo() {
             equiposeleccionado1 = false;
             equiposeleccionado2 = false;
         }
-        
+
         @Override
         public void run() {
             int seg2 = 0;
             
+            if(ckbEquipo1.isSelected()){
+                cambiarEquipo1();
+            }else if(chkEquipo2.isSelected()){
+                cambiarEquipo2();
+            }
+
             for (int min = 0; min <= 90; min++) {
                 if (min != 90) {
                     for (int seg = 0; seg < 60; seg++) {
@@ -219,16 +282,16 @@ public class App extends javax.swing.JFrame {
                             String minuto = (min <= 9 ? "0" + min : Integer.toString(min));
                             String segundos = (seg <= 9 ? "0" + seg : Integer.toString(seg));
                             lblTiempoPartido.setText(minuto + ":" + segundos);
-                            if(equiposeleccionado1){
+                            if (equiposeleccionado1) {
                                 aumentarSegEquipo1();
-                                int porcentajePosesion = (segEquipo1*100)/seg2;
+                                int porcentajePosesion = (segEquipo1 * 100) / seg2;
                                 lblPorcentajeEquipo1.setText(Integer.toString(porcentajePosesion));
-                            }else if(equiposeleccionado2){
+                            } else if (equiposeleccionado2) {
                                 aumentarSegEquipo2();
-                                int porcentajePosesion = (segEquipo2*100)/seg2;
+                                int porcentajePosesion = (segEquipo2 * 100) / seg2;
                                 lblPorcentajeEquipo2.setText(Integer.toString(porcentajePosesion));
                             }
-                            
+
                             Thread.sleep(3);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,23 +306,23 @@ public class App extends javax.swing.JFrame {
 
         public void aumentarSegEquipo1() {
             segEquipo1++;
-            System.out.println("equipo 1:"+segEquipo1);
+            System.out.println("equipo 1:" + segEquipo1);
         }
-        
+
         public void aumentarSegEquipo2() {
             segEquipo2++;
-            System.out.println("equipo 2:"+segEquipo2);
+            System.out.println("equipo 2:" + segEquipo2);
         }
-        
-        public void cambiarEquipo1(){
+
+        public void cambiarEquipo1() {
             equiposeleccionado2 = false;
             equiposeleccionado1 = true;
         }
-        
-        public void cambiarEquipo2(){
+
+        public void cambiarEquipo2() {
             equiposeleccionado1 = false;
             equiposeleccionado2 = true;
-            
+
         }
 
     }
