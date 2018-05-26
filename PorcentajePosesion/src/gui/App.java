@@ -16,7 +16,7 @@ public class App extends javax.swing.JFrame {
         btnComenzarPartido.setEnabled(false);
         btnEquipo1.setEnabled(false);
         btnEquipo2.setEnabled(false);
-        
+
     }
 
     /**
@@ -67,7 +67,7 @@ public class App extends javax.swing.JFrame {
         lblPorcentajeEquipo2.setText("0");
 
         lblTiempoPartido.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblTiempoPartido.setText("TIEMPO PARTIDO");
+        lblTiempoPartido.setText("00:00");
         lblTiempoPartido.setToolTipText("");
         lblTiempoPartido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -116,9 +116,9 @@ public class App extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(btnEquipo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
                 .addComponent(lblTiempoPartido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(btnEquipo2)
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -192,8 +192,14 @@ public class App extends javax.swing.JFrame {
         tiempo.start();
         chkEquipo2.setEnabled(false);
         ckbEquipo1.setEnabled(false);
-        btnEquipo1.setEnabled(true);
-        btnEquipo2.setEnabled(true);
+        if (ckbEquipo1.isSelected()) {
+            btnEquipo1.setEnabled(false);
+            btnEquipo2.setEnabled(true);
+        } else if (chkEquipo2.isSelected()) {
+            btnEquipo2.setEnabled(false);
+            btnEquipo1.setEnabled(true);
+        }
+
         btnComenzarPartido.setEnabled(false);
     }//GEN-LAST:event_btnComenzarPartidoActionPerformed
 
@@ -271,10 +277,10 @@ public class App extends javax.swing.JFrame {
         @Override
         public void run() {
             int seg2 = 0;
-            
-            if(ckbEquipo1.isSelected()){
+
+            if (ckbEquipo1.isSelected()) {
                 cambiarEquipo1();
-            }else if(chkEquipo2.isSelected()){
+            } else if (chkEquipo2.isSelected()) {
                 cambiarEquipo2();
             }
 
