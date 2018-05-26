@@ -177,10 +177,14 @@ public class App extends javax.swing.JFrame {
 
     private void btnEquipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipo1ActionPerformed
         tiempo.cambiarEquipo1();
+        btnEquipo1.setEnabled(false);
+        btnEquipo2.setEnabled(true);
     }//GEN-LAST:event_btnEquipo1ActionPerformed
 
     private void btnEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipo2ActionPerformed
         tiempo.cambiarEquipo2();
+        btnEquipo2.setEnabled(false);
+        btnEquipo1.setEnabled(true);
     }//GEN-LAST:event_btnEquipo2ActionPerformed
 
     private void btnComenzarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidoActionPerformed
@@ -190,6 +194,7 @@ public class App extends javax.swing.JFrame {
         ckbEquipo1.setEnabled(false);
         btnEquipo1.setEnabled(true);
         btnEquipo2.setEnabled(true);
+        btnComenzarPartido.setEnabled(false);
     }//GEN-LAST:event_btnComenzarPartidoActionPerformed
 
     private void ckbEquipo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbEquipo1MouseClicked
@@ -286,13 +291,17 @@ public class App extends javax.swing.JFrame {
                                 aumentarSegEquipo1();
                                 int porcentajePosesion = (segEquipo1 * 100) / seg2;
                                 lblPorcentajeEquipo1.setText(Integer.toString(porcentajePosesion));
+                                int porcentajePosecionEqui2 = (segEquipo2 * 100) / seg2;
+                                lblPorcentajeEquipo2.setText(Integer.toString(porcentajePosecionEqui2));
                             } else if (equiposeleccionado2) {
                                 aumentarSegEquipo2();
                                 int porcentajePosesion = (segEquipo2 * 100) / seg2;
                                 lblPorcentajeEquipo2.setText(Integer.toString(porcentajePosesion));
+                                int porcentajePosecionEqui1 = (segEquipo1 * 100) / seg2;
+                                lblPorcentajeEquipo1.setText(Integer.toString(porcentajePosecionEqui1));
                             }
 
-                            Thread.sleep(3);
+                            Thread.sleep(50);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
                         }
