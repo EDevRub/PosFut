@@ -2,6 +2,7 @@ package gui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -291,11 +292,21 @@ public class App extends javax.swing.JFrame {
     private void btnGolEqui1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolEqui1ActionPerformed
         conGoles1++;
         lblGolesEqui1.setText(Integer.toString(conGoles1));
+        tiempo.cambiarEquipo2();
+        btnGolEqui1.setEnabled(false);
+        btnGolEqui2.setEnabled(true);
+        btnEquipo1.setEnabled(true);
+        btnEquipo2.setEnabled(false);
     }//GEN-LAST:event_btnGolEqui1ActionPerformed
 
     private void btnGolEqui2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolEqui2ActionPerformed
         conGoles2++;
         lblGolesEqui2.setText(Integer.toString(conGoles2));
+        tiempo.cambiarEquipo1();
+        btnGolEqui2.setEnabled(false);
+        btnGolEqui1.setEnabled(true);
+        btnEquipo2.setEnabled(true);
+        btnEquipo1.setEnabled(false);
     }//GEN-LAST:event_btnGolEqui2ActionPerformed
 
     /**
@@ -398,13 +409,17 @@ public class App extends javax.swing.JFrame {
                                 lblPorcentajeEquipo1.setText(Integer.toString(porcentajePosecionEqui1));
                             }
 
-                            Thread.sleep(50);
+                            Thread.sleep(6);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 } else {
                     lblTiempoPartido.setText("90:00");
+                }
+                
+                if(min == 90){
+                    JOptionPane.showMessageDialog(null, "Equipo 1 =   "+conGoles1+" - "+conGoles2+"   = Equipo 2", "FIN PARTIDO", HEIGHT);
                 }
 
             }
