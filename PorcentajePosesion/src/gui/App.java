@@ -10,13 +10,17 @@ import java.util.logging.Logger;
 public class App extends javax.swing.JFrame {
 
     private Hilo tiempo;
+    private int conGoles1;
+    private int conGoles2;
 
     public App() {
         initComponents();
         btnComenzarPartido.setEnabled(false);
         btnEquipo1.setEnabled(false);
         btnEquipo2.setEnabled(false);
-
+        conGoles1 = 0;
+        conGoles2 = 0;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,6 +43,12 @@ public class App extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ckbEquipo1 = new javax.swing.JCheckBox();
         chkEquipo2 = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        lblGolesEqui1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblGolesEqui2 = new javax.swing.JLabel();
+        btnGolEqui1 = new javax.swing.JButton();
+        btnGolEqui2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,21 +109,45 @@ public class App extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("RESULTADO");
+
+        lblGolesEqui1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblGolesEqui1.setText("0");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("-");
+
+        lblGolesEqui2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblGolesEqui2.setText("0");
+
+        btnGolEqui1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnGolEqui1.setText("GOOOL!");
+        btnGolEqui1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGolEqui1ActionPerformed(evt);
+            }
+        });
+
+        btnGolEqui2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnGolEqui2.setText("GOOOL!");
+        btnGolEqui2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGolEqui2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGap(102, 102, 102)
+                .addComponent(ckbEquipo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(94, 94, 94))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(chkEquipo2)
+                .addGap(98, 98, 98))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(btnEquipo1)
                 .addGap(59, 59, 59)
@@ -121,16 +155,38 @@ public class App extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(btnEquipo2)
                 .addGap(44, 44, 44))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnComenzarPartido)
-                .addGap(196, 196, 196))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(ckbEquipo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(chkEquipo2)
-                .addGap(98, 98, 98))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGolEqui1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(lblGolesEqui1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblGolesEqui2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(94, 94, 94))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnComenzarPartido)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnGolEqui2)
+                                .addGap(85, 85, 85))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(258, 258, 258))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,15 +200,28 @@ public class App extends javax.swing.JFrame {
                     .addComponent(btnEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTiempoPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPorcentajeEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPorcentajeEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnComenzarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(lblGolesEqui1)
+                    .addComponent(jLabel5)
+                    .addComponent(lblGolesEqui2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnComenzarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGolEqui2))
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(btnGolEqui1)
+                        .addGap(39, 39, 39))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,12 +248,16 @@ public class App extends javax.swing.JFrame {
         tiempo.cambiarEquipo1();
         btnEquipo1.setEnabled(false);
         btnEquipo2.setEnabled(true);
+        btnGolEqui2.setEnabled(false);
+        btnGolEqui1.setEnabled(true);
     }//GEN-LAST:event_btnEquipo1ActionPerformed
 
     private void btnEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipo2ActionPerformed
         tiempo.cambiarEquipo2();
         btnEquipo2.setEnabled(false);
         btnEquipo1.setEnabled(true);
+        btnGolEqui2.setEnabled(true);
+        btnGolEqui1.setEnabled(false);
     }//GEN-LAST:event_btnEquipo2ActionPerformed
 
     private void btnComenzarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidoActionPerformed
@@ -195,9 +268,11 @@ public class App extends javax.swing.JFrame {
         if (ckbEquipo1.isSelected()) {
             btnEquipo1.setEnabled(false);
             btnEquipo2.setEnabled(true);
+            btnGolEqui2.setEnabled(false);
         } else if (chkEquipo2.isSelected()) {
             btnEquipo2.setEnabled(false);
             btnEquipo1.setEnabled(true);
+            btnGolEqui1.setEnabled(false);
         }
 
         btnComenzarPartido.setEnabled(false);
@@ -212,6 +287,16 @@ public class App extends javax.swing.JFrame {
         ckbEquipo1.setSelected(false);
         btnComenzarPartido.setEnabled(true);
     }//GEN-LAST:event_chkEquipo2MouseClicked
+
+    private void btnGolEqui1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolEqui1ActionPerformed
+        conGoles1++;
+        lblGolesEqui1.setText(Integer.toString(conGoles1));
+    }//GEN-LAST:event_btnGolEqui1ActionPerformed
+
+    private void btnGolEqui2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolEqui2ActionPerformed
+        conGoles2++;
+        lblGolesEqui2.setText(Integer.toString(conGoles2));
+    }//GEN-LAST:event_btnGolEqui2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,11 +337,17 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JButton btnComenzarPartido;
     private javax.swing.JButton btnEquipo1;
     private javax.swing.JButton btnEquipo2;
+    private javax.swing.JButton btnGolEqui1;
+    private javax.swing.JButton btnGolEqui2;
     private javax.swing.JCheckBox chkEquipo2;
     private javax.swing.JCheckBox ckbEquipo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblGolesEqui1;
+    private javax.swing.JLabel lblGolesEqui2;
     private javax.swing.JLabel lblPorcentajeEquipo1;
     private javax.swing.JLabel lblPorcentajeEquipo2;
     private javax.swing.JLabel lblTiempoPartido;
